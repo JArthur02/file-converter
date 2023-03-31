@@ -1154,13 +1154,6 @@ def documnet(client: pyrogram.client.Client, message: pyrogram.types.messages_an
                          f'__Detected Extension:__ **{dext}** 🗄\n__Do you want to Extract ?__\n\n{message.from_user.mention} __choose or click /cancel to Cancel or use /rename  to  Rename__',
                          reply_markup=ARCboard, reply_to_message_id=message.id)
 
-    # TOR
-    elif message.document.file_name.upper().endswith("TORRENT"):
-        removeSavedMsg(message)
-        oldm = app.send_message(message.chat.id,'__Getting Magnet Link__', reply_to_message_id=message.id)
-        ml = threading.Thread(target=lambda:getmag(message,oldm),daemon=True)
-        ml.start()
-        return
     
     # SUB
     elif message.document.file_name.upper().endswith(SUB):
