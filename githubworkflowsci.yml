@@ -1,0 +1,25 @@
+name: Continuous Integration
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Clear Cache
+        run: sudo rm -rf /var/cache/apt/archives/*
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y \
+            python3 \
+            python3-pip \
+            # Add any other dependencies here
+
+          pip3 install --upgrade pip setuptools wheel
+
+          # Install your project's dependencies here
+
+      - name: Run Tests
+        run: |
+          # Run your tests here
